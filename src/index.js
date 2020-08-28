@@ -1,31 +1,10 @@
 import { createStore } from 'redux'
 
-// reducer
-const reducer = (state = 0, action) => {
-    switch (action.type) {
-        case 'INC':
-            return state + 1
+import reducer from './reducer'
+import { inc, dec, rnd } from './actions'
 
-        case 'DEC':
-            return state - 1
-
-        case 'RND':
-            return action.payload
-
-        default: 
-            return state
-    }
-}
-
-// store 
 const store = createStore(reducer)
 
-// action creators
-const inc = () => ({ type: 'INC' })
-const dec =() => ({ type: 'DEC' })
-const rnd = (payload) => ({ type: 'RND', payload })
-
-// actions 
 document
     .getElementById('inc')
     .addEventListener('click', () => {
@@ -43,7 +22,6 @@ document
         store.dispatch(rnd(payload))
     })
 
-// event listener
 const updateCounter = () => {
     document.getElementById('counter').innerHTML = store.getState()
 }
