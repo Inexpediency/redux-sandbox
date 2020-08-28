@@ -1,5 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import * as actions from '../../actions'
 
 const Counter = ({ counterValue, inc, dec, rnd }) => {
     return (
@@ -24,4 +27,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Counter)
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)
